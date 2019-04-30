@@ -1,0 +1,55 @@
+  # Defines an HTTP API endpoint that calls the main function in create.js
+  # - path: url path is /documents
+  # - method: POST request
+  # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
+  #     domain api call
+  # - authorizer: authenticate using the AWS IAM role
+  createDocument:
+    handler: api/documents/create.main
+    events:
+      - http:
+          path: documents
+          method: post
+          cors: true
+          authorizer: aws_iam
+  getDocument:
+    # Defines an HTTP API endpoint that calls the main function in get.js
+    # - path: url path is /documents/{id}
+    # - method: GET request
+    handler: api/documents/get.main
+    events:
+      - http:
+          path: documents/{id}
+          method: get
+          cors: true
+          authorizer: aws_iam
+  listDocument:
+    handler: api/documents/list.main
+    events:
+      - http:
+          path: documents
+          method: get
+          cors: true
+          authorizer: aws_iam
+  # updateDocument:
+  #   # Defines an HTTP API endpoint that calls the main function in update.js
+  #   # - path: url path is /documents/{id}
+  #   # - method: PUT request
+  #   handler: api/documents/update.main
+  #   events:
+  #     - http:
+  #         path: documents/{id}
+  #         method: put
+  #         cors: true
+  #         authorizer: aws_iam
+  deleteDocument:
+    # Defines an HTTP API endpoint that calls the main function in delete.js
+    # - path: url path is /documents/{id}
+    # - method: DELETE request
+    handler: api/documents/delete.main
+    events:
+      - http:
+          path: documents/{id}
+          method: delete
+          cors: true
+          authorizer: aws_iam
